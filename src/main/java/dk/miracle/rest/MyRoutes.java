@@ -3,15 +3,12 @@ package dk.miracle.rest;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.cdi.ContextName;
 
-/**
- * Configures all our Camel routes, components, endpoints and beans
- */
 @ContextName("Proxy")
 public class MyRoutes extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-    	restConfiguration().setComponent("jetty");
+    	restConfiguration().port(8080).setComponent("jetty");
     	
     	rest("/say/")
         .produces("text/plain")
