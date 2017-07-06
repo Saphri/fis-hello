@@ -1,0 +1,27 @@
+package dk.miracle.rest;
+
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.cdi.ContextName;
+
+/**
+ * Configures all our Camel routes, components, endpoints and beans
+ */
+@ContextName("Proxy")
+public class MyRoutes extends RouteBuilder {
+
+    @Override
+    public void configure() throws Exception {
+    	restConfiguration().setComponent("jetty");
+    	
+    	rest("/say/")
+        .produces("text/plain")
+        .get("hello")
+            .route()
+            .transform().constant("Hello World!")
+            .endRest()
+        .get("hello/{name}")
+            .route()
+            .beanRef("hello")
+            .log("${body}");
+    }
+}
