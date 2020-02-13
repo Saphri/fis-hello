@@ -39,6 +39,7 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
+    mavenOptions: '$(MAVEN_OPTS)'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     goals: 'package'
@@ -66,6 +67,7 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
+    mavenOptions: '$(MAVEN_OPTS)'
     mavenAuthenticateFeed: true
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
