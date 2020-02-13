@@ -4,13 +4,20 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- master
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+      - README.adoc
+      - .gitignore
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
 - task: Maven@3
+  displayName: 'build, test, code coverage'
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
@@ -20,3 +27,19 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     goals: 'package'
+
+- task: CopyFiles@2
+  displayName: 'Copy Azure artifacts for maven deploy to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**/*.jar'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    pathtoPublish: '$(build.artifactstagingdirectory)'
+    artifactName: drop
+    publishLocation: 'Container'
+  condition: succeededOrFailed()
