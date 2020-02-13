@@ -36,6 +36,32 @@
       <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>fis-rest-proxy</id>
+            <url>https://pkgs.dev.azure.com/mjelle/0b205265-ec59-4403-a0c2-c4c31522402e/_packaging/fis-rest-proxy/maven/v1</url>
+            <releases>
+              <enabled>true</enabled>
+            </releases>
+            <snapshots>
+              <enabled>true</enabled>
+            </snapshots>
+          </repository>        
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>fis-rest-proxy</id>
+            <url>https://pkgs.dev.azure.com/mjelle/0b205265-ec59-4403-a0c2-c4c31522402e/_packaging/fis-rest-proxy/maven/v1</url>
+            <releases>
+              <enabled>true</enabled>
+            </releases>
+            <snapshots>
+              <enabled>true</enabled>
+            </snapshots>
+          </repository>
+    </distributionManagement>
+
     <dependencyManagement>
         <dependencies>
             <!-- Add Camel BOM -->
