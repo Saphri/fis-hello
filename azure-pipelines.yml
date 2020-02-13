@@ -36,14 +36,13 @@ steps:
     SourceFolder: '$(system.defaultworkingdirectory)/target'
     Contents: '**/*.jar'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
+  condition: succeeded()
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
+  displayName: 'Publish Artifact: application'
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: drop
-    publishLocation: 'Container'
+    artifactName: application
   condition: succeeded()
 
 - task: Maven@3
