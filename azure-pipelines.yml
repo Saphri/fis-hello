@@ -19,7 +19,6 @@ pool:
 
 variables:
   MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
-  MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
 
 steps:
 - task: Cache@2
@@ -39,7 +38,6 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
-    mavenOptions: '$(MAVEN_OPTS)'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     goals: 'package'
@@ -67,7 +65,6 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
-    mavenOptions: '$(MAVEN_OPTS)'
     mavenAuthenticateFeed: true
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
