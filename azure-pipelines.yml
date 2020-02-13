@@ -14,6 +14,8 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
+  demands:
+    - maven
 
 steps:
 - task: Maven@3
@@ -29,17 +31,17 @@ steps:
     goals: 'package'
 
 - task: CopyFiles@2
-  displayName: 'Copy Azure artifacts for maven deploy to: $(build.artifactstagingdirectory)'
+  displayName: 'Copy Azure artifacts for maven deploy to: $(Build.ArtifactStagingDirectory)'
   inputs:
-    SourceFolder: '$(system.defaultworkingdirectory)'
+    SourceFolder: '$(system.defaultworkingdirectory)/target'
     Contents: '**/*.jar'
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   inputs:
-    pathtoPublish: '$(build.artifactstagingdirectory)'
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: drop
     publishLocation: 'Container'
-  condition: succeededOrFailed()
+  condition: succeeded()
