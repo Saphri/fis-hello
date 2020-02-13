@@ -11,6 +11,10 @@
 		"java.home": "/docker-java-home"
 	},
 	
+	"mounts": [
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.m2/repository,target=/usr/share/maven/ref/repository,type=bind,consistency=cached"
+	],
+
 	// Use 'appPort' to create a container with published ports. If the port isn't working, be sure
 	// your server accepts connections from all interfaces (0.0.0.0 or '*'), not just localhost.
 	// "appPort": [8080],
