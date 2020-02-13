@@ -54,6 +54,7 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
+    mavenAuthenticateFeed: true
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     goals: 'deploy'
