@@ -38,9 +38,9 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
   && rm -f /tmp/apache-maven.tar.gz \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
-COPY maven-settings.xml /usr/share/maven/ref/
+COPY maven-settings.xml /home/$USERNAME/.m2/settings.xml
 ENV MAVEN_HOME /usr/share/maven
-ENV MAVEN_CONFIG /root/.m2
+ENV MAVEN_CONFIG /home/$USERNAME/.m2
 #-------------------------------------------------------------------------------------------------------------
 
 #-------------------Uncomment the following steps to install Gradle CLI Tools---------------------------------
